@@ -6,10 +6,10 @@ import { v1 } from "uuid";
 export type FilterValuesType = "all" | "active" | "completed";
 
 let initialState = [
-  { id: v1(), title: "CSS", isDone: true },
-  { id: v1(), title: "JS", isDone: true },
-  { id: v1(), title: "ReactJS", isDone: false },
-  { id: v1(), title: "NodeJS", isDone: false },
+  { id: v1(), title: "CSS", isDone: true, isEditing: false, comments:[] },
+  { id: v1(), title: "JS", isDone: true , isEditing: false, comments: []},
+  { id: v1(), title: "ReactJS", isDone: false , isEditing: false, comments: []},
+  { id: v1(), title: "NodeJS", isDone: false , isEditing: false, comments: []},
 ];
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   };
 
   const addTask = (title: string) => {
-    let newTask = { id: v1(), title: title, isDone: false };
+    let newTask = { id: v1(), title: title, isDone: false, isEditing: false, comments:[] };
     let newTasks = [newTask, ...tasks];
     setTasks(newTasks);
   }
@@ -37,6 +37,30 @@ function App() {
   const changeFilter = (value: FilterValuesType) => {
     setFilter(value);
   };
+
+  const taskItemEditHandler = (taskId: string) => {
+    tasks.map(task => {
+      if(task.id !== taskId) {
+        task.isEditing = false;
+      }
+    });
+    let task = tasks.find(t => t.id === taskId);
+    if(task) {
+      task.isEditing = !task.isEditing;
+    }
+    setTasks([...tasks]);
+  }
+
+  const addCommentsToTodoItem = (taskId: string ,comment: string) => {
+    let task = tasks.find(t => t.id === taskId);
+    if(task) {
+      let newComments = [...task.comments, comment];
+      task.comments = newComments
+    }
+    setTasks([...tasks]);
+    console.log(tasks);
+  }
+
   let tasksForTodoList = tasks;
   if (filter === "completed") {
     tasksForTodoList = tasks.filter((t) => t.isDone === true);
@@ -54,6 +78,8 @@ function App() {
         addTask={addTask}
         changeStatus={changeStatus}
         filter={filter}
+        taskItemEditHandler={taskItemEditHandler}
+        addCommentsToTodoItem={addCommentsToTodoItem}
       />
     </div>
   );

@@ -1,0 +1,25 @@
+.myModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    background: rgba(0,0,0, .5);
+}
+.myModalContent {
+    min-width: 600px;
+    padding: 30px;
+    border-radius: 20px;
+    background: #fff;
+}
+.myModal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media screen and (max-width: 576px) {
+    .myModalContent {
+        min-width: 300px;
+    }
+}
