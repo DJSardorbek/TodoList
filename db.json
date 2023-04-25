@@ -1,0 +1,35 @@
+{
+  "todos": {
+    "title": "What to learn",
+    "tasks": [
+      {
+        "id": "1",
+        "title": "CSS",
+        "isDone": true,
+        "isEditing": false,
+        "comments": []
+      },
+      {
+        "id": "2",
+        "title": "JS",
+        "isDone": true,
+        "isEditing": false,
+        "comments": []
+      },
+      {
+        "id": "3",
+        "title": "ReactJS",
+        "isDone": false,
+        "isEditing": false,
+        "comments": []
+      },
+      {
+        "id": "4",
+        "title": "NodeJS",
+        "isDone": false,
+        "isEditing": false,
+        "comments": []
+      }
+    ]
+  }
+}
